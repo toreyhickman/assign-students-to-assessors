@@ -10,7 +10,7 @@ module AssessorStudentHelper
   end
 
   def self.generate_markdown_file(assessor_students)
-    File.open("./assessor_assignments_for_cohorts/#{ARGV[0]}.md", 'w') do |file|
+    File.open("./assessor_assignments_for_cohorts/#{cohort_name_no_space(ARGV[0])}.md", 'w') do |file|
       assessor_students.each do |assessor, students|
         file << "## #{assessor}\n"
 
@@ -21,5 +21,9 @@ module AssessorStudentHelper
         file << "\n"
       end
     end
+  end
+
+  def self.cohort_name_no_space(name)
+    name.delete(" ")
   end
 end
